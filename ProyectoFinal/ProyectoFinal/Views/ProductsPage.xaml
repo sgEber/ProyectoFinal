@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinal.Views.ProductsPage"
+             Title="Productos">
+
+    <StackLayout Spacing="10" Padding="10">
+
+        <!-- Botón para mostrar los campos de entrada para un nuevo producto -->
+        <Button Text="Agregar Nuevo Producto"
+                Command="{Binding AddNewProductCommand}" />
+
+        <!-- Contenedores para entrada de nuevo producto -->
+        <!-- Utiliza IsVisible para controlar la visibilidad de los campos de entrada -->
+        <StackLayout IsVisible="{Binding IsAddingNewProduct}">
+            <Entry Placeholder="Título"
+                   Text="{Binding NewProduct.Title}" />
+            <Entry Placeholder="Precio"
+                   Text="{Binding NewProduct.Price}"
+                   Keyboard="Numeric" />
+            <Editor Placeholder="Descripción"
+                    Text="{Binding NewProduct.Description}"
+                    AutoSize="TextChanges" />
+            <Entry Placeholder="Categoría"
+                   Text="{Binding NewProduct.Category}" />
+
+            <!-- Botón para guardar el nuevo producto -->
+            <Button Text="Guardar Producto"
+                    Command="{Binding SaveNewProductCommand}" />
+        </StackLayout>
+
+        <!-- Botón para cargar productos existentes -->
+        <Button Text="Cargar Productos"
+                Command="{Binding LoadProductsCommand}" />
+
+        <!-- Lista de Productos -->
+        <ListView ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="10">
+                            <Label Text="{Binding Title}" FontAttributes="Bold" />
+                            <Label Text="{Binding Price, StringFormat='Precio: {0:C}'}" />
+                            <Label Text="{Binding Description}" />
+                            <Label Text="{Binding Category}" FontAttributes="Italic" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
