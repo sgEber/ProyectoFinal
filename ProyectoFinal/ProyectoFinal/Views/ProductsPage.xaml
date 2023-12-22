@@ -6,12 +6,10 @@
 
     <StackLayout Spacing="10" Padding="10">
 
-        <!-- Botón para mostrar los campos de entrada para un nuevo producto -->
         <Button Text="Agregar Nuevo Producto"
                 Command="{Binding AddNewProductCommand}" />
 
-        <!-- Contenedores para entrada de nuevo producto -->
-        <!-- Utiliza IsVisible para controlar la visibilidad de los campos de entrada -->
+
         <StackLayout IsVisible="{Binding IsAddingNewProduct}">
             <Entry Placeholder="Título"
                    Text="{Binding NewProduct.Title}" />
@@ -24,18 +22,18 @@
             <Entry Placeholder="Categoría"
                    Text="{Binding NewProduct.Category}" />
 
-            <!-- Botón para guardar el nuevo producto -->
+
             <Button Text="Guardar Producto"
                     Command="{Binding SaveNewProductCommand}" />
         </StackLayout>
 
-        <!-- Botón para cargar productos existentes -->
         <Button Text="Cargar Productos"
                 Command="{Binding LoadProductsCommand}" />
 
-        <!-- Lista de Productos -->
+
         <ListView ItemsSource="{Binding Products}"
-                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
+                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                  RowHeight="150">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

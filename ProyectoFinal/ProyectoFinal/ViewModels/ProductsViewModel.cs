@@ -26,7 +26,7 @@ namespace ProyectoFinal.ViewModels
             }
         }
 
-        // Propiedades para un nuevo producto
+
         public Product NewProduct
         {
             get { return _newProduct; }
@@ -37,7 +37,6 @@ namespace ProyectoFinal.ViewModels
             }
         }
 
-        // Propiedad que controla la visibilidad de los campos de entrada para nuevo producto
         public bool IsAddingNewProduct
         {
             get { return _isAddingNewProduct; }
@@ -48,7 +47,7 @@ namespace ProyectoFinal.ViewModels
             }
         }
 
-        // Comandos
+
         public ICommand LoadProductsCommand { get; }
         public ICommand AddNewProductCommand { get; }
         public ICommand SaveNewProductCommand { get; }
@@ -59,15 +58,15 @@ namespace ProyectoFinal.ViewModels
             AddNewProductCommand = new Command(PrepareNewProduct);
             SaveNewProductCommand = new Command(async () => await AddProduct(NewProduct));
 
-            // Inicializar el nuevo producto
+
             NewProduct = new Product();
         }
 
         private void PrepareNewProduct()
         {
-            // Preparar un nuevo objeto Product para la entrada del usuario
+
             NewProduct = new Product();
-            IsAddingNewProduct = true; // Mostrar los campos de entrada
+            IsAddingNewProduct = true; 
         }
 
         public async Task LoadProducts()
@@ -82,7 +81,7 @@ namespace ProyectoFinal.ViewModels
             {
                 Products.Add(newProduct);
                 OnPropertyChanged(nameof(Products));
-                IsAddingNewProduct = false; // Ocultar los campos de entrada después de agregar
+                IsAddingNewProduct = false; 
             }
         }
 
